@@ -20,11 +20,14 @@ public class User {
     @Column(name = "id")
     private UUID id;
 
-    @NotNull(message = "First name is mandatory")
+    @NotNull
     private String firstName;
 
-    @NotNull(message = "Last name is mandatory")
+    @NotNull
     private String lastName;
+
+    @NotNull
+    private String password;
 
     @Column(unique = true)
     private String email;

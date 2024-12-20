@@ -1,11 +1,10 @@
 package com.sumupwallet.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.sumupwallet.enums.TransactionType;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -21,7 +20,10 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String title;
+    @Enumerated(EnumType.STRING)
+    private TransactionType type;
+
+    private BigDecimal amount;
 
     private OffsetDateTime createdOn;
 }

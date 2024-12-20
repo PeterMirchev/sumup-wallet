@@ -1,10 +1,12 @@
 package com.sumupwallet.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,9 +23,13 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @NotNull
+    private Currency currency;
+
     private BigDecimal balance;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
     private List<Transaction> transactions = new ArrayList<>();
 
     @OneToOne(mappedBy = "wallet")

@@ -16,6 +16,8 @@ public class CreateUserRequest {
     @Size(min = 2)
     @NotNull(message = "lastName required")
     private String lastName;
+    @NotNull(message = "password required")
+    private String password;
     @Email(message = "invalid Email")
     private String email;
 
