@@ -4,11 +4,14 @@ import com.sumupwallet.dto.UserResponseDto;
 import com.sumupwallet.mapper.UserMapper;
 import com.sumupwallet.model.User;
 import com.sumupwallet.request.CreateUserRequest;
+import com.sumupwallet.request.UpdateUserRequest;
 import com.sumupwallet.response.ApiResponse;
 import com.sumupwallet.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("${api.prefix}/users")
@@ -28,5 +31,14 @@ public class UserController {
         UserResponseDto response = UserMapper.mapToUserResponseDto(user);
 
         return ResponseEntity.ok(new ApiResponse("User created successfully: ", response));
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiResponse> updateUser(@RequestBody @Valid UpdateUserRequest request, @PathVariable UUID id) {
+
+        User user = userService.updateUser(request, id);
+        UserResponseDto response = UserMapper.mapToUserResponseDto(user);
+
+        return ResponseEntity.ok(new ApiResponse("User updated successfully: ", response));
     }
 }

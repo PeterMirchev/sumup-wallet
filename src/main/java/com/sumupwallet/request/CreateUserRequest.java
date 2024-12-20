@@ -10,10 +10,10 @@ import lombok.Data;
 @Builder
 public class CreateUserRequest {
 
-    @Size(min = 2)
+    @Size(min = 2, max = 50)
     @NotNull(message = "firstName required")
     private String firstName;
-    @Size(min = 2)
+    @Size(min = 2, max = 50)
     @NotNull(message = "lastName required")
     private String lastName;
     @NotNull(message = "password required")
