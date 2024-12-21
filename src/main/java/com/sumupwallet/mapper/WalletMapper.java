@@ -25,14 +25,6 @@ public class WalletMapper {
 
     public static WalletResponse mapToWalletResponse(Wallet wallet) {
 
-       /* Transaction transaction;
-
-        if (wallet.getTransactions() == null) {
-            transaction = new Transaction();
-        } else {
-            transaction = wallet.getTransactions().get(wallet.getTransactions().size() - 1);
-        }*/
-
         return WalletResponse.builder()
                 .id(wallet.getId())
                 .walletName(wallet.getWalletName())
