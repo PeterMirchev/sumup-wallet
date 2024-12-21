@@ -82,6 +82,14 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse("Wallet Successfully retrieved: ", response));
     }
 
+    @GetMapping("/balance")
+    public ResponseEntity<ApiResponse> getWalletBalance(@RequestParam UUID walletId) {
+
+        BigDecimal balance = walletService.getWalletBalance(walletId);
+
+        return ResponseEntity.ok(new ApiResponse("Wallet Balance retrieved:", balance));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> deleteWallet(@PathVariable(name = "id") UUID id) {
 

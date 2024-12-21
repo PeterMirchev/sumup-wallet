@@ -139,4 +139,12 @@ public class WalletServiceImpl implements WalletService {
 
         return walletRepository.findWalletByUserId(userId);
     }
+
+    @Override
+    public BigDecimal getWalletBalance(UUID id) {
+        Wallet wallet = walletRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Wallet with ID %s not found.".formatted(id)));
+
+        return wallet.getBalance();
+    }
 }

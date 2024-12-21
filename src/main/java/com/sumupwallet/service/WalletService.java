@@ -17,4 +17,6 @@ public interface WalletService {
     void deleteWallet(UUID id);
 
     List<Wallet> getAllWalletsByUserId(UUID userId);
+
+    BigDecimal getWalletBalance(UUID walletId);
 }
