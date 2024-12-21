@@ -32,7 +32,8 @@ public class WalletConfig {
     private final JwtUtils jwtUtils;
 
     private static final List<String> SECURED_URLS =
-            List.of("/api/v1/wallets/**","api/v1/users/update/**",
+            List.of("/api/v1/wallets/**",
+                    "api/v1/users/update/**",
                     "api/v1/users/by-email/**",
                     "api/v1/users/by-id/**");
 

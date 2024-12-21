@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull; // Import for validation
 import lombok.*;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 
 @Builder
 @Entity
@@ -38,7 +36,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Collection<Role> roles = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "wallet_id", referencedColumnName = "id")
-    private Wallet wallet;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Wallet> wallets = new ArrayList<>();
 }

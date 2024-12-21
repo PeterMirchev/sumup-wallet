@@ -1,6 +1,6 @@
 package com.sumupwallet.mapper;
 
-import com.sumupwallet.dto.UserResponseDto;
+import com.sumupwallet.dto.UserResponse;
 import com.sumupwallet.enums.Role;
 import com.sumupwallet.model.User;
 import com.sumupwallet.request.CreateUserRequest;
@@ -21,9 +21,9 @@ public class UserMapper {
                 .build();
     }
 
-    public static UserResponseDto mapToUserResponseDto(User user) {
+    public static UserResponse mapToUserResponseDto(User user) {
 
-        return UserResponseDto.builder()
+        return UserResponse.builder()
                 .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
