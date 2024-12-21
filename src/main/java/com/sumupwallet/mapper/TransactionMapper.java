@@ -2,7 +2,6 @@ package com.sumupwallet.mapper;
 
 import com.sumupwallet.enums.TransactionType;
 import com.sumupwallet.model.Transaction;
-import com.sumupwallet.model.Wallet;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

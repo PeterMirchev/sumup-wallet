@@ -3,7 +3,6 @@ package com.sumupwallet.mapper;
 import com.sumupwallet.dto.WalletResponse;
 import com.sumupwallet.dto.WalletTransactionsResponse;
 import com.sumupwallet.dto.WalletsResponse;
-import com.sumupwallet.model.Transaction;
 import com.sumupwallet.model.Wallet;
 import com.sumupwallet.request.CreateWalletRequest;
 
