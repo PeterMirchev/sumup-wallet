@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     public User updateUser(UpdateUserRequest request, UUID id) {
 
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User Not Found! Invalid user id:\n%s".formatted(id.toString())));
+                .orElseThrow(() -> new ResourceNotFoundException("User with ID %s not found.".formatted(id)));
 
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
@@ -54,14 +54,14 @@ public class UserServiceImpl implements UserService {
     public User getUser(UUID id) {
 
         return userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User Not Found! Invalid user id: %s".formatted(id.toString())));
+                .orElseThrow(() -> new ResourceNotFoundException("User with ID %s not found.".formatted(id)));
     }
 
     @Override
     public User getUserByEmail(String email) {
 
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("User Not Found! Invalid user email: %s".formatted(email)));
+                .orElseThrow(() -> new ResourceNotFoundException("User with Email %s not found.".formatted(email)));
     }
 
     @Override
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
 
         userRepository.findById(id)
                 .ifPresentOrElse(userRepository :: delete, () -> {
-                    throw new ResourceNotFoundException("User Not Found! Invalid user id: %s".formatted(id.toString()));
+                    throw new ResourceNotFoundException("User with ID %s not found.".formatted(id));
                 });
     }
 }

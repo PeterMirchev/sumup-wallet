@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,7 +32,35 @@ public class WalletController {
 
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
-        return ResponseEntity.ok(new ApiResponse("Wallet Successfully created: ", response));
+        return ResponseEntity.ok(new ApiResponse("Wallet successfully created with name: %s", response));
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<ApiResponse> updateWallet(@RequestParam(name = "id") UUID id,
+                                                    @RequestParam(name = "name") String name) {
+
+        Wallet wallet = walletService.updateWallet(id, name);
+        WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
+
+        return ResponseEntity.ok(new ApiResponse("Wallet successfully updated with new name: %s", response));
+    }
+
+    @PutMapping("/deposit")
+    public ResponseEntity<ApiResponse> depositMoney(@RequestParam(name = "id") UUID id, @RequestParam BigDecimal amount) {
+
+        Wallet wallet = walletService.depositMoney(id, amount);
+        WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
+
+        return ResponseEntity.ok(new ApiResponse("Successfully deposited: %s".formatted(amount), response));
+    }
+
+    @PutMapping("/withdraw")
+    public ResponseEntity<ApiResponse> withdrawMoney(@RequestParam(name = "id") UUID id, @RequestParam BigDecimal amount) {
+
+        Wallet wallet = walletService.withdrawMoney(id, amount);
+        WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
+
+        return ResponseEntity.ok(new ApiResponse("Successfully withdrawn: %s".formatted(amount), response));
     }
 
     @GetMapping("/all-wallets/{userId}")
@@ -41,5 +70,22 @@ public class WalletController {
         List<WalletsResponse> responses = WalletMapper.mapToWalletsResponse(wallets);
 
         return ResponseEntity.ok(new ApiResponse("Wallets Successfully retrieved: ", responses));
+    }
+
+    @GetMapping("/wallet/{id}")
+    public ResponseEntity<ApiResponse> getWalletById(@PathVariable UUID id) {
+
+        Wallet wallet = walletService.getWalletById(id);
+        WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
+
+        return ResponseEntity.ok(new ApiResponse("Wallet Successfully retrieved: ", response));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse> deleteWallet(@PathVariable(name = "id") UUID id) {
+
+        walletService.deleteWallet(id);
+
+        return ResponseEntity.ok(new ApiResponse("Wallet successfully deleted!", null));
     }
 }
