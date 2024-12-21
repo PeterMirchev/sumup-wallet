@@ -1,11 +1,15 @@
 package com.sumupwallet.service.impl;
 
+import com.sumupwallet.enums.TransactionType;
 import com.sumupwallet.exception.InvalidAmountException;
 import com.sumupwallet.exception.ResourceAlreadyExistException;
 import com.sumupwallet.exception.ResourceNotFoundException;
 import com.sumupwallet.mapper.WalletMapper;
+import com.sumupwallet.mapper.TransactionMapper;
+import com.sumupwallet.model.Transaction;
 import com.sumupwallet.model.User;
 import com.sumupwallet.model.Wallet;
+import com.sumupwallet.repository.TransactionRepository;
 import com.sumupwallet.repository.UserRepository;
 import com.sumupwallet.repository.WalletRepository;
 import com.sumupwallet.request.CreateWalletRequest;
@@ -22,11 +26,15 @@ public class WalletServiceImpl implements WalletService {
 
     private final WalletRepository walletRepository;
     private final UserRepository userRepository;
+    private final TransactionRepository transactionRepository;
 
-    public WalletServiceImpl(WalletRepository walletRepository, UserRepository userRepository) {
+    public WalletServiceImpl(WalletRepository walletRepository,
+                             UserRepository userRepository,
+                             TransactionRepository transactionRepository) {
 
         this.walletRepository = walletRepository;
         this.userRepository = userRepository;
+        this.transactionRepository = transactionRepository;
     }
 
     @Override
@@ -80,7 +88,11 @@ public class WalletServiceImpl implements WalletService {
         Wallet wallet = walletRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Wallet with ID %s not found.".formatted(id)));
 
+        Transaction transaction = TransactionMapper.mapToTransaction(amount, TransactionType.DEPOSIT);
+        Transaction persistedTransaction = transactionRepository.save(transaction);
+
         wallet.setBalance(wallet.getBalance().add(amount));
+        wallet.getTransactions().add(persistedTransaction);
 
         return walletRepository.save(wallet);
     }
@@ -98,8 +110,11 @@ public class WalletServiceImpl implements WalletService {
         if (amount.compareTo(wallet.getBalance()) > 0) {
             throw new InvalidAmountException("Insufficient funds. Requested: %s, Available: %s".formatted(amount, wallet.getBalance()));
         }
+        Transaction transaction = TransactionMapper.mapToTransaction(amount, TransactionType.WITHDRAWAL);
+        Transaction persistedTransaction = transactionRepository.save(transaction);
 
         wallet.setBalance(wallet.getBalance().subtract(amount));
+        wallet.getTransactions().add(persistedTransaction);
 
         return walletRepository.save(wallet);
     }

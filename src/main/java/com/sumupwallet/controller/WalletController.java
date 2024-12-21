@@ -1,6 +1,7 @@
 package com.sumupwallet.controller;
 
 import com.sumupwallet.dto.WalletResponse;
+import com.sumupwallet.dto.WalletTransactionsResponse;
 import com.sumupwallet.dto.WalletsResponse;
 import com.sumupwallet.mapper.WalletMapper;
 import com.sumupwallet.model.Wallet;
@@ -32,7 +33,7 @@ public class WalletController {
 
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
-        return ResponseEntity.ok(new ApiResponse("Wallet successfully created with name: %s", response));
+        return ResponseEntity.ok(new ApiResponse("Wallet successfully created with name: %s".formatted(request.getWalletName()), response));
     }
 
     @PutMapping("/update")
@@ -51,7 +52,7 @@ public class WalletController {
         Wallet wallet = walletService.depositMoney(id, amount);
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
-        return ResponseEntity.ok(new ApiResponse("Successfully deposited: %s".formatted(amount), response));
+        return ResponseEntity.ok(new ApiResponse("Successfully deposited: %s %s".formatted(amount, wallet.getCurrency()), response));
     }
 
     @PutMapping("/withdraw")
@@ -60,7 +61,7 @@ public class WalletController {
         Wallet wallet = walletService.withdrawMoney(id, amount);
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
-        return ResponseEntity.ok(new ApiResponse("Successfully withdrawn: %s".formatted(amount), response));
+        return ResponseEntity.ok(new ApiResponse("Successfully withdrawn: %s %s".formatted(amount, wallet.getCurrency()), response));
     }
 
     @GetMapping("/all-wallets/{userId}")
@@ -76,7 +77,7 @@ public class WalletController {
     public ResponseEntity<ApiResponse> getWalletById(@PathVariable UUID id) {
 
         Wallet wallet = walletService.getWalletById(id);
-        WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
+        WalletTransactionsResponse response = WalletMapper.mapToWalletWithTransactionsResponse(wallet);
 
         return ResponseEntity.ok(new ApiResponse("Wallet Successfully retrieved: ", response));
     }

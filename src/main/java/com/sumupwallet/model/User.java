@@ -2,7 +2,6 @@ package com.sumupwallet.model;
 
 import com.sumupwallet.enums.Role;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull; // Import for validation
 import lombok.*;
 
 import java.util.*;
@@ -13,7 +12,7 @@ import java.util.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
     @Id
@@ -21,13 +20,13 @@ public class User {
     @Column(name = "id")
     private UUID id;
 
-    @NotNull
+    @Column(nullable = false)
     private String firstName;
 
-    @NotNull
+    @Column(nullable = false)
     private String lastName;
 
-    @NotNull
+    @Column(nullable = false)
     private String password;
 
     @Column(unique = true)

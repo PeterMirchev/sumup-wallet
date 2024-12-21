@@ -1,11 +1,14 @@
 package com.sumupwallet.mapper;
 
 import com.sumupwallet.dto.WalletResponse;
+import com.sumupwallet.dto.WalletTransactionsResponse;
 import com.sumupwallet.dto.WalletsResponse;
+import com.sumupwallet.model.Transaction;
 import com.sumupwallet.model.Wallet;
 import com.sumupwallet.request.CreateWalletRequest;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WalletMapper {
@@ -16,16 +19,26 @@ public class WalletMapper {
                 .walletName(request.getWalletName())
                 .currency(request.getCurrency())
                 .balance(BigDecimal.valueOf(0))
+                .transactions(new ArrayList<>())
                 .build();
     }
 
     public static WalletResponse mapToWalletResponse(Wallet wallet) {
+
+       /* Transaction transaction;
+
+        if (wallet.getTransactions() == null) {
+            transaction = new Transaction();
+        } else {
+            transaction = wallet.getTransactions().get(wallet.getTransactions().size() - 1);
+        }*/
 
         return WalletResponse.builder()
                 .id(wallet.getId())
                 .walletName(wallet.getWalletName())
                 .currency(wallet.getCurrency())
                 .balance(wallet.getBalance())
+                .transaction(wallet.getTransactions().isEmpty() ? null : wallet.getTransactions().get(wallet.getTransactions().size() - 1))
                 .user(UserMapper.mapToUserResponseDto(wallet.getUser()))
                 .build();
     }
@@ -40,5 +53,17 @@ public class WalletMapper {
                         .balance(wallet.getBalance())
                         .build())
                 .toList();
+    }
+
+    public static WalletTransactionsResponse mapToWalletWithTransactionsResponse(Wallet wallet) {
+
+        return WalletTransactionsResponse.builder()
+                .id(wallet.getId())
+                .walletName(wallet.getWalletName())
+                .currency(wallet.getCurrency())
+                .balance(wallet.getBalance())
+                .transactions(wallet.getTransactions())
+                .user(UserMapper.mapToUserResponseDto(wallet.getUser()))
+                .build();
     }
 }
