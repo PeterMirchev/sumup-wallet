@@ -20,6 +20,7 @@ public class UserController {
     private final UserService userService;
 
     public UserController(UserService userService) {
+
         this.userService = userService;
     }
 
@@ -27,7 +28,6 @@ public class UserController {
     public ResponseEntity<ApiResponse> createUser(@RequestBody @Valid CreateUserRequest request) {
 
         User user = userService.createUser(request);
-
         UserResponseDto response = UserMapper.mapToUserResponseDto(user);
 
         return ResponseEntity.ok(new ApiResponse("User created successfully: ", response));
@@ -40,5 +40,31 @@ public class UserController {
         UserResponseDto response = UserMapper.mapToUserResponseDto(user);
 
         return ResponseEntity.ok(new ApiResponse("User updated successfully: ", response));
+    }
+
+    @GetMapping("/by-id/{id}")
+    public ResponseEntity<ApiResponse> getUser(@PathVariable UUID id) {
+
+        User user = userService.getUser(id);
+        UserResponseDto response = UserMapper.mapToUserResponseDto(user);
+
+        return ResponseEntity.ok(new ApiResponse("User: ", response));
+    }
+
+    @GetMapping("/by-email/{email}")
+    public ResponseEntity<ApiResponse> getUserByEmail(@PathVariable String email) {
+
+        User user = userService.getUserByEmail(email);
+        UserResponseDto response = UserMapper.mapToUserResponseDto(user);
+
+        return ResponseEntity.ok(new ApiResponse("User: ", response));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable UUID id) {
+
+        userService.deleteUser(id);
+
+        return ResponseEntity.ok(new ApiResponse("User deleted successfully: ", null));
     }
 }

@@ -52,11 +52,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(UUID id) {
-        return null;
+
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User Not Found! Invalid user id: %s".formatted(id.toString())));
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User Not Found! Invalid user email: %s".formatted(email)));
     }
 
     @Override
     public void deleteUser(UUID id) {
 
+        userRepository.findById(id)
+                .ifPresentOrElse(userRepository :: delete, () -> {
+                    throw new ResourceNotFoundException("User Not Found! Invalid user id: %s".formatted(id.toString()));
+                });
     }
 }

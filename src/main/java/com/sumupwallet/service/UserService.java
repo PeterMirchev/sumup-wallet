@@ -12,5 +12,7 @@ public interface UserService {
     User createUser(CreateUserRequest request);
     User updateUser(UpdateUserRequest request, UUID id);
     User getUser(UUID id);
+    User getUserByEmail(String email);
+
     void deleteUser(UUID id);
 }
