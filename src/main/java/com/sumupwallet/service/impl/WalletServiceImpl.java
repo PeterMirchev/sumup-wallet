@@ -1,11 +1,11 @@
 package com.sumupwallet.service.impl;
 
-import com.sumupwallet.enums.TransactionType;
+import com.sumupwallet.utils.enums.TransactionType;
 import com.sumupwallet.exception.InvalidAmountException;
 import com.sumupwallet.exception.ResourceAlreadyExistException;
 import com.sumupwallet.exception.ResourceNotFoundException;
-import com.sumupwallet.mapper.WalletMapper;
-import com.sumupwallet.mapper.TransactionMapper;
+import com.sumupwallet.utils.mapper.WalletMapper;
+import com.sumupwallet.utils.mapper.TransactionMapper;
 import com.sumupwallet.model.Transaction;
 import com.sumupwallet.model.User;
 import com.sumupwallet.model.Wallet;
@@ -20,6 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
+
+import static com.sumupwallet.utils.ExceptionMessages.*;
 
 @Service
 public class WalletServiceImpl implements WalletService {
@@ -41,19 +43,19 @@ public class WalletServiceImpl implements WalletService {
     public Wallet getWalletById(UUID id) {
 
         return walletRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Wallet with ID %s not found.".formatted(id)));
+                .orElseThrow(() -> new ResourceNotFoundException(WALLET_WITH_ID_NOT_FOUND.formatted(id)));
     }
 
     @Override
     public Wallet createWallet(CreateWalletRequest request, UUID userId) {
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User Not Found! Invalid user id: %s".formatted(userId.toString())));
+                .orElseThrow(() -> new ResourceNotFoundException(USER_WITH_ID_NOT_FOUND.formatted(userId.toString())));
 
         user.getWallets()
                 .forEach(wallet -> {
                     if (wallet.getWalletName().equals(request.getWalletName())) {
-                        throw new ResourceAlreadyExistException("Wallet Name Already Exist: {%s}".formatted(request.getWalletName()));
+                        throw new ResourceAlreadyExistException(WALLET_ALREADY_EXIST.formatted(request.getWalletName()));
                     }});
 
         Wallet wallet = WalletMapper.mapToWallet(request);
@@ -71,7 +73,7 @@ public class WalletServiceImpl implements WalletService {
     public Wallet updateWallet(UUID id, String name) {
 
         Wallet wallet = walletRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Wallet with ID %s not found.".formatted(id)));
+                .orElseThrow(() -> new ResourceNotFoundException(WALLET_WITH_ID_NOT_FOUND.formatted(id)));
 
         wallet.setWalletName(name);
 
@@ -82,11 +84,11 @@ public class WalletServiceImpl implements WalletService {
     public Wallet depositMoney(UUID id, BigDecimal amount) {
 
         if (amount.signum() <= 0) {
-            throw new InvalidAmountException("Amount must be bigger than '0' or positive - %s".formatted(amount));
+            throw new InvalidAmountException(AMOUNT_EXCEPTION.formatted(amount));
         }
 
         Wallet wallet = walletRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Wallet with ID %s not found.".formatted(id)));
+                .orElseThrow(() -> new ResourceNotFoundException(WALLET_WITH_ID_NOT_FOUND.formatted(id)));
 
         Transaction transaction = TransactionMapper.mapToTransaction(amount, TransactionType.DEPOSIT);
         Transaction persistedTransaction = transactionRepository.save(transaction);
@@ -101,14 +103,14 @@ public class WalletServiceImpl implements WalletService {
     public Wallet withdrawMoney(UUID id, BigDecimal amount) {
 
         Wallet wallet = walletRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Wallet with ID %s not found.".formatted(id)));
+                .orElseThrow(() -> new ResourceNotFoundException(WALLET_WITH_ID_NOT_FOUND.formatted(id)));
 
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new InvalidAmountException("Amount must be greater or bigger than '0': %s".formatted(amount));
+            throw new InvalidAmountException(AMOUNT_EXCEPTION.formatted(amount));
         }
 
         if (amount.compareTo(wallet.getBalance()) > 0) {
-            throw new InvalidAmountException("Insufficient funds. Requested: %s, Available: %s".formatted(amount, wallet.getBalance()));
+            throw new InvalidAmountException(INSUFFICIENT_FUNDS.formatted(amount, wallet.getBalance()));
         }
         Transaction transaction = TransactionMapper.mapToTransaction(amount, TransactionType.WITHDRAWAL);
         Transaction persistedTransaction = transactionRepository.save(transaction);
@@ -124,7 +126,7 @@ public class WalletServiceImpl implements WalletService {
     public void deleteWallet(UUID id) {
 
         Wallet wallet = walletRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Wallet with ID %s not found.".formatted(id)));
+                .orElseThrow(() -> new ResourceNotFoundException(WALLET_WITH_ID_NOT_FOUND.formatted(id)));
 
         User user = wallet.getUser();
         if (user != null) {
@@ -143,7 +145,7 @@ public class WalletServiceImpl implements WalletService {
     @Override
     public BigDecimal getWalletBalance(UUID id) {
         Wallet wallet = walletRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Wallet with ID %s not found.".formatted(id)));
+                .orElseThrow(() -> new ResourceNotFoundException(WALLET_WITH_ID_NOT_FOUND.formatted(id)));
 
         return wallet.getBalance();
     }

@@ -1,7 +1,7 @@
 package com.sumupwallet.controller;
 
-import com.sumupwallet.dto.UserResponse;
-import com.sumupwallet.mapper.UserMapper;
+import com.sumupwallet.model.dto.UserResponse;
+import com.sumupwallet.utils.mapper.UserMapper;
 import com.sumupwallet.model.User;
 import com.sumupwallet.request.CreateUserRequest;
 import com.sumupwallet.request.UpdateUserRequest;
@@ -33,26 +33,26 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse("User created successfully: ", response));
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<ApiResponse> updateUser(@RequestBody @Valid UpdateUserRequest request, @PathVariable UUID id) {
+    @PutMapping("/update/{userId}")
+    public ResponseEntity<ApiResponse> updateUser(@RequestBody @Valid UpdateUserRequest request, @PathVariable UUID userId) {
 
-        User user = userService.updateUser(request, id);
+        User user = userService.updateUser(request, userId);
         UserResponse response = UserMapper.mapToUserResponseDto(user);
 
         return ResponseEntity.ok(new ApiResponse("User updated successfully: ", response));
     }
 
-    @GetMapping("/by-id/{id}")
-    public ResponseEntity<ApiResponse> getUser(@PathVariable UUID id) {
+    @GetMapping("/by-id/{userId}")
+    public ResponseEntity<ApiResponse> getUser(@PathVariable UUID userId) {
 
-        User user = userService.getUser(id);
+        User user = userService.getUser(userId);
         UserResponse response = UserMapper.mapToUserResponseDto(user);
 
         return ResponseEntity.ok(new ApiResponse("User: ", response));
     }
 
-    @GetMapping("/by-email/{email}")
-    public ResponseEntity<ApiResponse> getUserByEmail(@PathVariable String email) {
+    @GetMapping("/by-email")
+    public ResponseEntity<ApiResponse> getUserByEmail(@RequestParam(name = "email") String email) {
 
         User user = userService.getUserByEmail(email);
         UserResponse response = UserMapper.mapToUserResponseDto(user);
@@ -60,10 +60,10 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse("User: ", response));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse> deleteUser(@PathVariable UUID id) {
+    @DeleteMapping("/delete/{userId}")
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable UUID userId) {
 
-        userService.deleteUser(id);
+        userService.deleteUser(userId);
 
         return ResponseEntity.ok(new ApiResponse("User deleted successfully: ", null));
     }

@@ -1,8 +1,8 @@
-package com.sumupwallet.mapper;
+package com.sumupwallet.utils.mapper;
 
-import com.sumupwallet.dto.WalletResponse;
-import com.sumupwallet.dto.WalletTransactionsResponse;
-import com.sumupwallet.dto.WalletsResponse;
+import com.sumupwallet.model.dto.WalletResponse;
+import com.sumupwallet.model.dto.WalletTransactionsResponse;
+import com.sumupwallet.model.dto.WalletsResponse;
 import com.sumupwallet.model.Wallet;
 import com.sumupwallet.request.CreateWalletRequest;
 

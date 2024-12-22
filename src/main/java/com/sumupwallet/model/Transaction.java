@@ -2,7 +2,7 @@ package com.sumupwallet.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.sumupwallet.config.LocalDateTimeSerializer;
-import com.sumupwallet.enums.TransactionType;
+import com.sumupwallet.utils.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
 

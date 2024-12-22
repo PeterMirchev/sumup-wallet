@@ -12,7 +12,9 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class LocalDateTimeSerializer extends JsonSerializer<LocalDateTime> {
 
-    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+    private static final String DTF_FORMAT = "MM-dd-yyyy HH:mm";
+
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DTF_FORMAT);
 
     @Override
     public void serialize(LocalDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException {

@@ -1,6 +1,6 @@
 package com.sumupwallet.model;
 
-import com.sumupwallet.enums.Role;
+import com.sumupwallet.utils.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 

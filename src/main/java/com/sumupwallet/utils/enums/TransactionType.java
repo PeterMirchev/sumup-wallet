@@ -1,4 +1,4 @@
-package com.sumupwallet.enums;
+package com.sumupwallet.utils.enums;
 
 public enum TransactionType {
 

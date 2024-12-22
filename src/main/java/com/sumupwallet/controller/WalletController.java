@@ -1,9 +1,9 @@
 package com.sumupwallet.controller;
 
-import com.sumupwallet.dto.WalletResponse;
-import com.sumupwallet.dto.WalletTransactionsResponse;
-import com.sumupwallet.dto.WalletsResponse;
-import com.sumupwallet.mapper.WalletMapper;
+import com.sumupwallet.model.dto.WalletResponse;
+import com.sumupwallet.model.dto.WalletTransactionsResponse;
+import com.sumupwallet.model.dto.WalletsResponse;
+import com.sumupwallet.utils.mapper.WalletMapper;
 import com.sumupwallet.model.Wallet;
 import com.sumupwallet.request.CreateWalletRequest;
 import com.sumupwallet.response.ApiResponse;
@@ -26,8 +26,8 @@ public class WalletController {
         this.walletService = walletService;
     }
 
-    @PostMapping("/create/{userId}")
-    public ResponseEntity<ApiResponse> createWallet(@RequestBody @Valid CreateWalletRequest request, @PathVariable UUID userId) {
+    @PostMapping("/create/")
+    public ResponseEntity<ApiResponse> createWallet(@RequestBody @Valid CreateWalletRequest request, @RequestParam UUID userId) {
 
         Wallet wallet = walletService.createWallet(request, userId);
 
@@ -37,28 +37,27 @@ public class WalletController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ApiResponse> updateWallet(@RequestParam(name = "id") UUID id,
-                                                    @RequestParam(name = "name") String name) {
+    public ResponseEntity<ApiResponse> updateWallet(@RequestParam(name = "walletId") UUID walletId, @RequestParam(name = "walletName") String walletName) {
 
-        Wallet wallet = walletService.updateWallet(id, name);
+        Wallet wallet = walletService.updateWallet(walletId, walletName);
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
         return ResponseEntity.ok(new ApiResponse("Wallet successfully updated with new name: %s", response));
     }
 
     @PutMapping("/deposit")
-    public ResponseEntity<ApiResponse> depositMoney(@RequestParam(name = "id") UUID id, @RequestParam BigDecimal amount) {
+    public ResponseEntity<ApiResponse> depositMoney(@RequestParam(name = "walletId") UUID walletId, @RequestParam BigDecimal amount) {
 
-        Wallet wallet = walletService.depositMoney(id, amount);
+        Wallet wallet = walletService.depositMoney(walletId, amount);
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
         return ResponseEntity.ok(new ApiResponse("Successfully deposited: %s %s".formatted(amount, wallet.getCurrency()), response));
     }
 
     @PutMapping("/withdraw")
-    public ResponseEntity<ApiResponse> withdrawMoney(@RequestParam(name = "id") UUID id, @RequestParam BigDecimal amount) {
+    public ResponseEntity<ApiResponse> withdrawMoney(@RequestParam(name = "walletId") UUID walletId, @RequestParam BigDecimal amount) {
 
-        Wallet wallet = walletService.withdrawMoney(id, amount);
+        Wallet wallet = walletService.withdrawMoney(walletId, amount);
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
         return ResponseEntity.ok(new ApiResponse("Successfully withdrawn: %s %s".formatted(amount, wallet.getCurrency()), response));
@@ -73,27 +72,27 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse("Wallets Successfully retrieved: ", responses));
     }
 
-    @GetMapping("/wallet/{id}")
-    public ResponseEntity<ApiResponse> getWalletById(@PathVariable UUID id) {
+    @GetMapping("/wallet/{walletId}")
+    public ResponseEntity<ApiResponse> getWalletById(@PathVariable UUID walletId) {
 
-        Wallet wallet = walletService.getWalletById(id);
+        Wallet wallet = walletService.getWalletById(walletId);
         WalletTransactionsResponse response = WalletMapper.mapToWalletWithTransactionsResponse(wallet);
 
         return ResponseEntity.ok(new ApiResponse("Wallet Successfully retrieved: ", response));
     }
 
-    @GetMapping("/balance")
-    public ResponseEntity<ApiResponse> getWalletBalance(@RequestParam UUID walletId) {
+    @GetMapping("/balance/{walletId}")
+    public ResponseEntity<ApiResponse> getWalletBalance(@PathVariable UUID walletId) {
 
         BigDecimal balance = walletService.getWalletBalance(walletId);
 
         return ResponseEntity.ok(new ApiResponse("Wallet Balance retrieved:", balance));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse> deleteWallet(@PathVariable(name = "id") UUID id) {
+    @DeleteMapping("/{walletId}")
+    public ResponseEntity<ApiResponse> deleteWallet(@PathVariable(name = "walletId") UUID walletId) {
 
-        walletService.deleteWallet(id);
+        walletService.deleteWallet(walletId);
 
         return ResponseEntity.ok(new ApiResponse("Wallet successfully deleted!", null));
     }

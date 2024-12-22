@@ -1,6 +1,6 @@
-package com.sumupwallet.mapper;
+package com.sumupwallet.utils.mapper;
 
-import com.sumupwallet.enums.TransactionType;
+import com.sumupwallet.utils.enums.TransactionType;
 import com.sumupwallet.model.Transaction;
 
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package com.sumupwallet.dto;
+package com.sumupwallet.model.dto;
 
 import lombok.Builder;
 import lombok.Data;

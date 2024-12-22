@@ -1,7 +1,7 @@
-package com.sumupwallet.mapper;
+package com.sumupwallet.utils.mapper;
 
-import com.sumupwallet.dto.UserResponse;
-import com.sumupwallet.enums.Role;
+import com.sumupwallet.model.dto.UserResponse;
+import com.sumupwallet.utils.enums.Role;
 import com.sumupwallet.model.User;
 import com.sumupwallet.request.CreateUserRequest;
 
