@@ -24,7 +24,8 @@ Open the application.properties file and configure the database credentials to m
 
 Run the API using IntelliJ.
 
-Download the provided Postman collection to test the API endpoints.
+Download the shared Postman collection and word document with instructions on how to test the API endpoints.
+file names - SumUm Wallet API Calls | SumUpWallet.postman_collection
 
 *Technologies Used*
 
