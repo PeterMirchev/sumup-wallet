@@ -22,7 +22,7 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String walletName;
 
     @Column(nullable = false)
@@ -30,8 +30,7 @@ public class Wallet {
     @Column(nullable = false)
     private BigDecimal balance;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Transaction> transactions = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)

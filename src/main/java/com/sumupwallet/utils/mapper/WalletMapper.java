@@ -8,6 +8,7 @@ import com.sumupwallet.request.CreateWalletRequest;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 
 public class WalletMapper {
@@ -16,7 +17,7 @@ public class WalletMapper {
 
         return Wallet.builder()
                 .walletName(request.getWalletName())
-                .currency(request.getCurrency())
+                .currency(Currency.getInstance(request.getCurrency()))
                 .balance(BigDecimal.valueOf(0))
                 .transactions(new ArrayList<>())
                 .build();

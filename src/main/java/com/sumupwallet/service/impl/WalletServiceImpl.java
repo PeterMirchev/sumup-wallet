@@ -91,6 +91,7 @@ public class WalletServiceImpl implements WalletService {
                 .orElseThrow(() -> new ResourceNotFoundException(WALLET_WITH_ID_NOT_FOUND.formatted(id)));
 
         Transaction transaction = TransactionMapper.mapToTransaction(amount, TransactionType.DEPOSIT);
+        transaction.setWallet(wallet);
         Transaction persistedTransaction = transactionRepository.save(transaction);
 
         wallet.setBalance(wallet.getBalance().add(amount));
@@ -113,6 +114,7 @@ public class WalletServiceImpl implements WalletService {
             throw new InvalidAmountException(INSUFFICIENT_FUNDS.formatted(amount, wallet.getBalance()));
         }
         Transaction transaction = TransactionMapper.mapToTransaction(amount, TransactionType.WITHDRAWAL);
+        transaction.setWallet(wallet);
         Transaction persistedTransaction = transactionRepository.save(transaction);
 
         wallet.setBalance(wallet.getBalance().subtract(amount));

@@ -26,7 +26,7 @@ public class WalletController {
         this.walletService = walletService;
     }
 
-    @PostMapping("/create/")
+    @PostMapping("/create")
     public ResponseEntity<ApiResponse> createWallet(@RequestBody @Valid CreateWalletRequest request, @RequestParam UUID userId) {
 
         Wallet wallet = walletService.createWallet(request, userId);

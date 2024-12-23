@@ -1,11 +1,10 @@
 package com.sumupwallet.request;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.Currency;
 
 @Data
 @Builder
@@ -15,6 +14,9 @@ public class CreateWalletRequest {
     @Size(min = 2)
     private String walletName;
 
-    @NotNull(message = "Currency required")
-    private Currency currency;
+    @NotNull(message = "Currency is required")
+    @Pattern(regexp = "^(EUR|USD|GBP|AUD|JPY|CAD|CHF|CNY|INR|MXN|BRL|NZD|SEK|SGD|HKD|NOK|RUB|ZAR|TRY|KRW)$",
+            message = "Invalid currency code.")
+    private String currency;
+
 }

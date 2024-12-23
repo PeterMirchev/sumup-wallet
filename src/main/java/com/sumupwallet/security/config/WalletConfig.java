@@ -36,7 +36,8 @@ public class WalletConfig {
                     "api/v1/users/update/**",
                     "api/v1/users/delete/**",
                     "api/v1/users/by-email/**",
-                    "api/v1/users/by-id/**");
+                    "api/v1/users/by-id/**",
+                    "api/v1/transactions/**");
 
     @Autowired
     public WalletConfig(WalletUserDetailsService userDetailsService, JwtAuthEntryPoint jwtAuthEntryPoint, JwtUtils jwtUtils) {

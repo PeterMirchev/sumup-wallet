@@ -1,8 +1,10 @@
 package com.sumupwallet.controller.exception;
 
 import com.sumupwallet.exception.InvalidAmountException;
+import com.sumupwallet.exception.InvalidCurrencyException;
 import com.sumupwallet.exception.ResourceAlreadyExistException;
 import com.sumupwallet.exception.ResourceNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -34,6 +36,20 @@ public class ExceptionAdvice {
     public ResponseEntity<ErrorResponse> handleInvalidAmountException(InvalidAmountException exception) {
 
         ErrorResponse errorResponse = new ErrorResponse(exception.getMessage(), HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException exception) {
+
+        ErrorResponse errorResponse = new ErrorResponse("Duplicate entry for wallet name", HttpStatus.CONFLICT.value());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
+    @ExceptionHandler(InvalidCurrencyException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidCurrencyException(InvalidCurrencyException exception) {
+
+        ErrorResponse errorResponse = new ErrorResponse("Duplicate entry for wallet name", HttpStatus.CONFLICT.value());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 

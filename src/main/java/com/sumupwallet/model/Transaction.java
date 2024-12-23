@@ -1,5 +1,6 @@
 package com.sumupwallet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.sumupwallet.config.LocalDateTimeSerializer;
 import com.sumupwallet.utils.enums.TransactionType;
@@ -28,4 +29,8 @@ public class Transaction {
     private BigDecimal amount;
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime createdOn;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "wallet_id", referencedColumnName = "id")
+    private Wallet wallet;
 }
