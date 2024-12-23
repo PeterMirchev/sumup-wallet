@@ -1,0 +1,638 @@
+{
+	"info": {
+		"_postman_id": "275ba4b0-7685-4b3a-9464-f9f7a06fbc22",
+		"name": "SumUpWallet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25219280"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"New User\",\r\n    \"lastName\":\"User\",\r\n    \"password\":\"123123123\",\r\n    \"email\":\"new-asd@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9193/api/v1/users/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWNjZXNzQGdtYWlsLmNvbSIsImlkIjoiNWQ3ZmViZGItMWI4Yi00Yjg5LTkzZDYtMjU3OWU2MTdhOWMxIiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE3MzQ3MjU5MTksImV4cCI6MTczNDcyOTUxOX0.paTjpWvwSl5lEilV5vObcIyy13UHNZuuVZ_IR0ieJAs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"lastName\",\r\n    \"lastName\":\"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9193/api/v1/users/update/5d7febdb-1b8b-4b89-93d6-2579e617a9c1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"update",
+								"5d7febdb-1b8b-4b89-93d6-2579e617a9c1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJndWl0YXJvbmxpbmU4OUBnbWFpbC5jb20iLCJpZCI6IjVmODQ0YThlLTM1OWQtNGY3OC1hYzliLTdkNzgzMWJjM2EwOSIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM0OTUyMTMyLCJleHAiOjE3MzQ5NTU3MzJ9.lTDTxeiwBMTfmaqSbb3OOPjq95BxG7j2w_tkBXD_QUY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/users/by-id/guitaronline89@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"by-id",
+								"guitaronline89@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0QGdtYWlsLmNvbSIsImlkIjoiNGQyZjdhYTQtNDExZi00OGU0LWI0MjctMzZiNjlkZTdkNzY0Iiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE3MzQ4MTgwNTMsImV4cCI6MTczNDgyMTY1M30.ajpO1ZP2U6SS3Gli2FlIXw_ktsBTFeR3nc5IJUzFIDM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/users/by-email?email=Test@gmail.com?email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"by-email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "Test@gmail.com?email"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/users/2c760f76-44cd-44dc-9e4d-70917d8929c5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"2c760f76-44cd-44dc-9e4d-70917d8929c5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "Create Wallet",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0QGdtYWlsLmNvbSIsImlkIjoiNGQyZjdhYTQtNDExZi00OGU0LWI0MjctMzZiNjlkZTdkNzY0Iiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE3MzQ4MTgwNTMsImV4cCI6MTczNDgyMTY1M30.ajpO1ZP2U6SS3Gli2FlIXw_ktsBTFeR3nc5IJUzFIDM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"walletName\":\"EUR\",\r\n    \"currency\":\"EUR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9193/api/v1/wallets/create?userId=4d2f7aa4-411f-48e4-b427-36b69de7d764",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"wallets",
+								"create"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "4d2f7aa4-411f-48e4-b427-36b69de7d764"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Wallet Name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuZXctYXNkQGdtYWlsLmNvbSIsImlkIjoiMmM3NjBmNzYtNDRjZC00NGRjLTllNGQtNzA5MTdkODkyOWM1Iiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE3MzQ4MDM5MTAsImV4cCI6MTczNDgwNzUxMH0.vV6oqYYhbBuVM9Pid-40fi2ao6kIRNbbKp9Kx4XS1Hs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/wallets/update?walletId=25b7e9be-6ce1-4469-a613-43e2b43ecd67&walletName=New name changed now",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"wallets",
+								"update"
+							],
+							"query": [
+								{
+									"key": "walletId",
+									"value": "25b7e9be-6ce1-4469-a613-43e2b43ecd67"
+								},
+								{
+									"key": "walletName",
+									"value": "New name changed now"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deposit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxd2Vxd2VAZ21haWwuY29tIiwiaWQiOiI5MDVlMjE5Zi05Y2JiLTRhZGEtOTMwZC03NTkyZWUwYzQ1NTEiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTczNDk2NTI0MywiZXhwIjoxNzM0OTY4ODQzfQ.OjEz8E4YpnX3awieIV0hxEelp7p_7H9TN26jipAK-GM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/wallets/deposit?walletId=c5e6c9c1-3a1b-46e5-8fae-a35bedc94dfa&amount=10000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"wallets",
+								"deposit"
+							],
+							"query": [
+								{
+									"key": "walletId",
+									"value": "c5e6c9c1-3a1b-46e5-8fae-a35bedc94dfa"
+								},
+								{
+									"key": "amount",
+									"value": "10000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0QGdtYWlsLmNvbSIsImlkIjoiODM4NWEyODktODAzMi00ODJkLWI0OGQtOGM1ZGJhNmVjYTBkIiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE3MzQ4MTIzMzYsImV4cCI6MTczNDgxNTkzNn0.6Ci3rEriBSMpIOjGapvcgQdpZy9rFM--TYanNKFUFqY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/wallets/withdraw?id=5e7e11b0-fbeb-4ef8-9dc2-27bb7f5c4ebd&amount=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"wallets",
+								"withdraw"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5e7e11b0-fbeb-4ef8-9dc2-27bb7f5c4ebd"
+								},
+								{
+									"key": "amount",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Wallets By User Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJndWl0YXJvbmxpbmU4OUBnbWFpbC5jb20iLCJpZCI6IjVmODQ0YThlLTM1OWQtNGY3OC1hYzliLTdkNzgzMWJjM2EwOSIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM0OTUwNjMzLCJleHAiOjE3MzQ5NTQyMzN9.R1Uylpo_FBQhPML6T6X1Px-vNs-yYjwAZ_2XMCLxi3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/wallets/all-wallets/5f844a8e-359d-4f78-ac9b-7d7831bc3a09",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"wallets",
+								"all-wallets",
+								"5f844a8e-359d-4f78-ac9b-7d7831bc3a09"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Wallet By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0QGdtYWlsLmNvbSIsImlkIjoiODM4NWEyODktODAzMi00ODJkLWI0OGQtOGM1ZGJhNmVjYTBkIiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE3MzQ4MTIzMzYsImV4cCI6MTczNDgxNTkzNn0.6Ci3rEriBSMpIOjGapvcgQdpZy9rFM--TYanNKFUFqY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/wallets/wallet/5e7e11b0-fbeb-4ef8-9dc2-27bb7f5c4ebd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"wallets",
+								"wallet",
+								"5e7e11b0-fbeb-4ef8-9dc2-27bb7f5c4ebd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Wallet Balance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0QGdtYWlsLmNvbSIsImlkIjoiNGQyZjdhYTQtNDExZi00OGU0LWI0MjctMzZiNjlkZTdkNzY0Iiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE3MzQ4MTg0MzMsImV4cCI6MTczNDgyMjAzM30.PfyeaaqCcWVYefMiy_Nhz6JPaPZXm6qokP3Be8NGPmA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/wallets/balance?walletId=72095683-2263-4a69-8f30-cc99642139e8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"wallets",
+								"balance"
+							],
+							"query": [
+								{
+									"key": "walletId",
+									"value": "72095683-2263-4a69-8f30-cc99642139e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Wallet",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuZXctYXNkQGdtYWlsLmNvbSIsImlkIjoiMmM3NjBmNzYtNDRjZC00NGRjLTllNGQtNzA5MTdkODkyOWM1Iiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE3MzQ4MDcyNzYsImV4cCI6MTczNDgxMDg3Nn0.Yq0NIWyjBo5qopGXPfBgu7yPBux88EBFFw6izFEE910",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/wallets/c5e6c9c1-3a1b-46e5-8fae-a35bedc94dfa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"wallets",
+								"c5e6c9c1-3a1b-46e5-8fae-a35bedc94dfa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Get All Transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/transactions/all/4bfd1a0c-b9c3-464c-89cb-1617cee690c2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"all",
+								"4bfd1a0c-b9c3-464c-89cb-1617cee690c2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Deposit Transactions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJndWl0YXJvbmxpbmU4OUBnbWFpbC5jb20iLCJpZCI6IjZjY2ViZTlhLTFlODYtNDg4Zi1iY2RlLThiNTg3NzgwNTAwZCIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM0OTU2NDk0LCJleHAiOjE3MzQ5NjAwOTR9.exjXPja2PsCIuw7GykP49jVdV5yIHwFjH-vcYkVMW3o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/transactions/all/deposit?walletId=16dea3d4-405c-46ec-a000-1fe17bd3b2a7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"all",
+								"deposit"
+							],
+							"query": [
+								{
+									"key": "walletId",
+									"value": "16dea3d4-405c-46ec-a000-1fe17bd3b2a7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Withdrawal Transactions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxd2Vxd2VAZ21haWwuY29tIiwiaWQiOiIxM2NmNjI1Zi1jZmU5LTRiZTUtYjlkNS0wMjNhNDY0ZDg5ZjMiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTczNDk2MTc2MCwiZXhwIjoxNzM0OTY1MzYwfQ._Nyh3yipY9KUkkyllSNwrpyqgcL2rUzgiarOEhsCufY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9193/api/v1/transactions/all/withdrawal?walletId=2424d564-fbdf-40f0-adfd-ab4973846c33",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9193",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"all",
+								"withdrawal"
+							],
+							"query": [
+								{
+									"key": "walletId",
+									"value": "2424d564-fbdf-40f0-adfd-ab4973846c33"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"new-asd@gmail.com\",\r\n    \"password\":\"123123123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9193/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9193",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
