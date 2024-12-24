@@ -7,13 +7,13 @@ SumUp Wallet allows users to register and manage multiple wallets in different c
 
 **Features**
 
-User registration with automatic email notifications for successful registration and account deletion.
+- User registration with automatic email notifications for successful registration and account deletion.
 
-Ability to create and manage multiple wallets in various currencies.
+- Ability to create and manage multiple wallets in various currencies.
 
-Deposit and withdraw funds for each wallet.
+- Deposit and withdraw funds for each wallet.
 
-Transaction history is maintained and stored in the database.
+- Transaction history is maintained and stored in the database.
 
 **Installation Instructions**
 
