@@ -1,4 +1,4 @@
-**SumUp Wallet**
+****SumUp Wallet****
 
 *Description*
 
