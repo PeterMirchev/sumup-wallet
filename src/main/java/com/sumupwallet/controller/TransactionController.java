@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+import static com.sumupwallet.utils.CommonMessages.*;
+import static com.sumupwallet.utils.mapper.Endpoints.TRANSACTIONS_CONTROLLER;
+
 @RestController
-@RequestMapping("${api.prefix}/transactions")
+@RequestMapping(TRANSACTIONS_CONTROLLER)
 public class TransactionController {
 
     private final TransactionService transactionService;
@@ -25,7 +28,7 @@ public class TransactionController {
 
         List<Transaction> transactions = transactionService.getAllTransactions(walletId);
 
-        return ResponseEntity.ok(new ApiResponse("Total transactions: %d".formatted(transactions.size()), transactions));
+        return ResponseEntity.ok(new ApiResponse(TOTAL_TRANSACTIONS.formatted(transactions.size()), transactions));
     }
 
     @GetMapping("/all/deposit")
@@ -33,7 +36,7 @@ public class TransactionController {
 
         List<Transaction> transactions = transactionService.getAllDepositTransactions(walletId);
 
-        return ResponseEntity.ok(new ApiResponse("Total deposit transactions: %d".formatted(transactions.size()), transactions));
+        return ResponseEntity.ok(new ApiResponse(TOTAL_DEPOSITED_TRANSACTIONS.formatted(transactions.size()), transactions));
     }
 
     @GetMapping("/all/withdrawal")
@@ -41,6 +44,6 @@ public class TransactionController {
 
         List<Transaction> transactions = transactionService.getAllWithdrawalTransactions(walletId);
 
-        return ResponseEntity.ok(new ApiResponse("Total deposit transactions: %d".formatted(transactions.size()), transactions));
+        return ResponseEntity.ok(new ApiResponse(TOTAL_WITHDRAWN_TRANSACTIONS.formatted(transactions.size()), transactions));
     }
 }

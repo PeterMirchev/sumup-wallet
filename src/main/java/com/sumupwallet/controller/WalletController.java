@@ -16,8 +16,11 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
+import static com.sumupwallet.utils.CommonMessages.*;
+import static com.sumupwallet.utils.mapper.Endpoints.WALLETS_CONTROLLER;
+
 @RestController
-@RequestMapping("${api.prefix}/wallets")
+@RequestMapping(WALLETS_CONTROLLER)
 public class WalletController {
 
     private final WalletService walletService;
@@ -33,7 +36,7 @@ public class WalletController {
 
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
-        return ResponseEntity.ok(new ApiResponse("Wallet successfully created with name: %s".formatted(request.getWalletName()), response));
+        return ResponseEntity.ok(new ApiResponse(WALLET_CREATED.formatted(request.getWalletName()), response));
     }
 
     @PutMapping("/update")
@@ -42,7 +45,7 @@ public class WalletController {
         Wallet wallet = walletService.updateWallet(walletId, walletName);
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
-        return ResponseEntity.ok(new ApiResponse("Wallet successfully updated with new name: %s", response));
+        return ResponseEntity.ok(new ApiResponse(WALLET_UPDATED, response));
     }
 
     @PutMapping("/deposit")
@@ -51,7 +54,7 @@ public class WalletController {
         Wallet wallet = walletService.depositMoney(walletId, amount);
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
-        return ResponseEntity.ok(new ApiResponse("Successfully deposited: %s %s".formatted(amount, wallet.getCurrency()), response));
+        return ResponseEntity.ok(new ApiResponse(SUCCESSFULLY_DEPOSITED.formatted(amount, wallet.getCurrency()), response));
     }
 
     @PutMapping("/withdraw")
@@ -60,7 +63,7 @@ public class WalletController {
         Wallet wallet = walletService.withdrawMoney(walletId, amount);
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
-        return ResponseEntity.ok(new ApiResponse("Successfully withdrawn: %s %s".formatted(amount, wallet.getCurrency()), response));
+        return ResponseEntity.ok(new ApiResponse(SUCCESSFULLY_WITHDRAWN.formatted(amount, wallet.getCurrency()), response));
     }
 
     @GetMapping("/all-wallets/{userId}")
@@ -69,7 +72,7 @@ public class WalletController {
         List<Wallet> wallets = walletService.getAllWalletsByUserId(userId);
         List<WalletsResponse> responses = WalletMapper.mapToWalletsResponse(wallets);
 
-        return ResponseEntity.ok(new ApiResponse("Wallets Successfully retrieved: ", responses));
+        return ResponseEntity.ok(new ApiResponse(WALLET_RETRIEVED, responses));
     }
 
     @GetMapping("/wallet/{walletId}")
@@ -78,7 +81,7 @@ public class WalletController {
         Wallet wallet = walletService.getWalletById(walletId);
         WalletTransactionsResponse response = WalletMapper.mapToWalletWithTransactionsResponse(wallet);
 
-        return ResponseEntity.ok(new ApiResponse("Wallet Successfully retrieved: ", response));
+        return ResponseEntity.ok(new ApiResponse(WALLET_RETRIEVED, response));
     }
 
     @GetMapping("/balance/{walletId}")
@@ -86,7 +89,7 @@ public class WalletController {
 
         BigDecimal balance = walletService.getWalletBalance(walletId);
 
-        return ResponseEntity.ok(new ApiResponse("Wallet Balance retrieved:", balance));
+        return ResponseEntity.ok(new ApiResponse(WALLET_BALANCE_RETRIEVED, balance));
     }
 
     @DeleteMapping("/{walletId}")
@@ -94,6 +97,6 @@ public class WalletController {
 
         walletService.deleteWallet(walletId);
 
-        return ResponseEntity.ok(new ApiResponse("Wallet successfully deleted!", null));
+        return ResponseEntity.ok(new ApiResponse(WALLET_DELETED, null));
     }
 }

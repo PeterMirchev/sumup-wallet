@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.sumupwallet.utils.CommonMessages.LOGIN_SUCCESS;
+import static com.sumupwallet.utils.mapper.Endpoints.AUTH_CONTROLLER;
+
 @RestController
-@RequestMapping("${api.prefix}/auth")
+@RequestMapping(AUTH_CONTROLLER)
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
@@ -40,6 +43,6 @@ public class AuthController {
 
         JwtResponse response = new JwtResponse(userDetails.getId(), jwt);
 
-        return ResponseEntity.ok(new ApiResponse("Login Success!", response));
+        return ResponseEntity.ok(new ApiResponse(LOGIN_SUCCESS, response));
     }
 }

@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+import static com.sumupwallet.utils.CommonMessages.*;
+import static com.sumupwallet.utils.mapper.Endpoints.USERS_CONTROLLER;
+
 @RestController
-@RequestMapping("${api.prefix}/users")
+@RequestMapping(USERS_CONTROLLER)
 public class UserController {
 
     private final UserService userService;
@@ -30,7 +33,7 @@ public class UserController {
         User user = userService.createUser(request);
         UserResponse response = UserMapper.mapToUserResponseDto(user);
 
-        return ResponseEntity.ok(new ApiResponse("User created successfully: ", response));
+        return ResponseEntity.ok(new ApiResponse(USER_SUCCESSFULLY_CREATED, response));
     }
 
     @PutMapping("/update/{userId}")
@@ -39,7 +42,7 @@ public class UserController {
         User user = userService.updateUser(request, userId);
         UserResponse response = UserMapper.mapToUserResponseDto(user);
 
-        return ResponseEntity.ok(new ApiResponse("User updated successfully: ", response));
+        return ResponseEntity.ok(new ApiResponse(USER_SUCCESSFULLY_UPDATED, response));
     }
 
     @GetMapping("/by-id/{userId}")
@@ -65,6 +68,6 @@ public class UserController {
 
         userService.deleteUser(userId);
 
-        return ResponseEntity.ok(new ApiResponse("User deleted successfully: ", null));
+        return ResponseEntity.ok(new ApiResponse(USER_SUCCESSFULLY_DELETED, null));
     }
 }
