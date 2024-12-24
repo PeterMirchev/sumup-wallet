@@ -1,10 +1,11 @@
 ****SumUp Wallet****
+-------------------
 
-*Description*
+**Description**
 
 SumUp Wallet allows users to register and manage multiple wallets in different currencies. Users can deposit, withdraw funds, and track their transaction history for each wallet.
 
-*Features*
+**Features**
 
 User registration with automatic email notifications for successful registration and account deletion.
 
@@ -14,7 +15,7 @@ Deposit and withdraw funds for each wallet.
 
 Transaction history is maintained and stored in the database.
 
-*Installation Instructions*
+**Installation Instructions**
 
 Ensure you have MySQL, IntelliJ IDEA, and Postman installed.
 
@@ -25,16 +26,16 @@ Open the application.properties file and configure the database credentials to m
 Run the API using IntelliJ.
 
 Download the shared Postman collection and word document with instructions on how to test the API endpoints.
-file names - SumUm Wallet API Calls | SumUpWallet.postman_collection
+File names - SumUm Wallet API Calls | SumUpWallet.postman_collection
 
-*Technologies Used*
+**Technologies Used**
 
-Java: Core language.
+- Java: Core language.
 
-Spring Framework: Backend framework.
+- Spring Framework: Backend framework.
 
-Hibernate: ORM for database operations.
+- Hibernate: ORM for database operations.
 
-Basic Spring Security: For user authentication.
+- Basic Spring Security: For user authentication.
 
-JavaMailSender: For email notifications.
+- JavaMailSender: For email notifications.
