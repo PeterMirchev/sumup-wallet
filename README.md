@@ -32,7 +32,7 @@ File names - SumUm Wallet API Calls | SumUpWallet.postman_collection
 
 - Java: Core language.
 
-- Spring Boot Framework: Backend framework.
+- Spring Boot: Backend framework.
 
 - Hibernate: ORM for database operations.
 
