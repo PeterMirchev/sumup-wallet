@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import static com.sumupwallet.utils.ExceptionMessages.USER_WITH_EMAIL_NOT_FOUND;
+
 @Service
 public class WalletUserDetailsService implements UserDetailsService {
 
@@ -22,7 +24,7 @@ public class WalletUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found! Invalid Email - %s".formatted(email)));
+                .orElseThrow(() -> new ResourceNotFoundException(USER_WITH_EMAIL_NOT_FOUND.formatted(email)));
 
         return WalletUserDetails.buildUserDetails(user);
     }
