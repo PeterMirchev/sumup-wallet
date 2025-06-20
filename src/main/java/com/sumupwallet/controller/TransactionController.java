@@ -23,7 +23,7 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @GetMapping("/all/{walletId}")
+    @GetMapping("/{walletId}")
     public ResponseEntity<ApiResponse> getTransactions(@PathVariable(name = "walletId") UUID walletId) {
 
         List<Transaction> transactions = transactionService.getAllTransactions(walletId);
@@ -31,7 +31,7 @@ public class TransactionController {
         return ResponseEntity.ok(new ApiResponse(TOTAL_TRANSACTIONS.formatted(transactions.size()), transactions));
     }
 
-    @GetMapping("/all/deposit")
+    @GetMapping("/deposit")
     public ResponseEntity<ApiResponse> getAllDepositTransactions(@RequestParam("walletId") UUID walletId) {
 
         List<Transaction> transactions = transactionService.getAllDepositTransactions(walletId);
@@ -39,7 +39,7 @@ public class TransactionController {
         return ResponseEntity.ok(new ApiResponse(TOTAL_DEPOSITED_TRANSACTIONS.formatted(transactions.size()), transactions));
     }
 
-    @GetMapping("/all/withdrawal")
+    @GetMapping("/withdrawal")
     public ResponseEntity<ApiResponse> getAllWithdrawalTransactions(@RequestParam("walletId") UUID walletId) {
 
         List<Transaction> transactions = transactionService.getAllWithdrawalTransactions(walletId);
