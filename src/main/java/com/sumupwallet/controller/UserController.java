@@ -27,7 +27,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<ApiResponse> createUser(@RequestBody @Valid CreateUserRequest request) {
 
         User user = userService.createUser(request);
@@ -36,7 +36,7 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse(USER_SUCCESSFULLY_CREATED, response));
     }
 
-    @PutMapping("/update/{userId}")
+    @PutMapping()
     public ResponseEntity<ApiResponse> updateUser(@RequestBody @Valid UpdateUserRequest request, @PathVariable UUID userId) {
 
         User user = userService.updateUser(request, userId);
@@ -45,7 +45,7 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse(USER_SUCCESSFULLY_UPDATED, response));
     }
 
-    @GetMapping("/by-id/{userId}")
+    @GetMapping("/{userId}")
     public ResponseEntity<ApiResponse> getUser(@PathVariable UUID userId) {
 
         User user = userService.getUser(userId);
@@ -54,7 +54,7 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse("User: ", response));
     }
 
-    @GetMapping("/by-email")
+    @GetMapping("/email")
     public ResponseEntity<ApiResponse> getUserByEmail(@RequestParam(name = "email") String email) {
 
         User user = userService.getUserByEmail(email);
@@ -63,7 +63,7 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse("User: ", response));
     }
 
-    @DeleteMapping("/delete/{userId}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable UUID userId) {
 
         userService.deleteUser(userId);

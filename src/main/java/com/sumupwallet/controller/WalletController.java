@@ -39,7 +39,7 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse(WALLET_CREATED.formatted(request.getWalletName()), response));
     }
 
-    @PutMapping("/update")
+    @PutMapping()
     public ResponseEntity<ApiResponse> updateWallet(@RequestParam(name = "walletId") UUID walletId, @RequestParam(name = "walletName") String walletName) {
 
         Wallet wallet = walletService.updateWallet(walletId, walletName);
@@ -66,7 +66,7 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse(SUCCESSFULLY_WITHDRAWN.formatted(amount, wallet.getCurrency()), response));
     }
 
-    @GetMapping("/all-wallets/{userId}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<ApiResponse> getWallets(@PathVariable UUID userId) {
 
         List<Wallet> wallets = walletService.getAllWalletsByUserId(userId);
