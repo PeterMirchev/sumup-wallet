@@ -31,6 +31,12 @@ public class AuthController {
         this.jwtUtils = jwtUtils;
     }
 
+    /**
+     * Authenticates a user.
+     * Endpoint: POST /auth/login
+     * @param request The login credentials (email and password).
+     * @return ResponseEntity with a success message and JWT details.
+     */
     @PostMapping("/login")
     public ResponseEntity<ApiResponse> login(@Valid @RequestBody LoginRequest request) {
 

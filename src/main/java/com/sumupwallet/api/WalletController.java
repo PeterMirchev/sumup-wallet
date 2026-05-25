@@ -29,6 +29,12 @@ public class WalletController {
         this.walletService = walletService;
     }
 
+    /**
+     * Creates a new wallet for a user.
+     * Endpoint: POST /wallets
+     * @param request The wallet creation details (userId, walletName, currency).
+     * @return ResponseEntity with the created wallet details.
+     */
     @PostMapping()
     public ResponseEntity<ApiResponse> createWallet(@RequestBody @Valid CreateWalletRequest request) {
 
@@ -39,6 +45,13 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse(WALLET_CREATED.formatted(request.getWalletName()), response));
     }
 
+    /**
+     * Updates an existing wallet's name.
+     * Endpoint: PUT /wallets?walletId={walletId}&walletName={walletName}
+     * @param walletId The ID of the wallet to update.
+     * @param walletName The new name for the wallet.
+     * @return ResponseEntity with the updated wallet details.
+     */
     @PutMapping()
     public ResponseEntity<ApiResponse> updateWallet(@RequestParam(name = "walletId") UUID walletId, @RequestParam(name = "walletName") String walletName) {
 
@@ -48,6 +61,13 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse(WALLET_UPDATED, response));
     }
 
+    /**
+     * Deposits money into a wallet.
+     * Endpoint: PUT /wallets/deposit?walletId={walletId}&amount={amount}
+     * @param walletId The ID of the wallet.
+     * @param amount The amount to deposit.
+     * @return ResponseEntity with the updated wallet details.
+     */
     @PutMapping("/deposit")
     public ResponseEntity<ApiResponse> depositMoney(@RequestParam(name = "walletId") UUID walletId, @RequestParam BigDecimal amount) {
 
@@ -57,6 +77,13 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse(SUCCESSFULLY_DEPOSITED.formatted(amount, wallet.getCurrency()), response));
     }
 
+    /**
+     * Withdraws money from a wallet.
+     * Endpoint: PUT /wallets/withdraw?walletId={walletId}&amount={amount}
+     * @param walletId The ID of the wallet.
+     * @param amount The amount to withdraw.
+     * @return ResponseEntity with the updated wallet details.
+     */
     @PutMapping("/withdraw")
     public ResponseEntity<ApiResponse> withdrawMoney(@RequestParam(name = "walletId") UUID walletId, @RequestParam BigDecimal amount) {
 
@@ -66,6 +93,12 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse(SUCCESSFULLY_WITHDRAWN.formatted(amount, wallet.getCurrency()), response));
     }
 
+    /**
+     * Retrieves all wallets belonging to a user.
+     * Endpoint: GET /wallets/user/{userId}
+     * @param userId The ID of the user.
+     * @return ResponseEntity with a list of user's wallets.
+     */
     @GetMapping("/user/{userId}")
     public ResponseEntity<ApiResponse> getWallets(@PathVariable UUID userId) {
 
@@ -75,6 +108,12 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse(WALLET_RETRIEVED, responses));
     }
 
+    /**
+     * Retrieves a wallet by its ID.
+     * Endpoint: GET /wallets/{walletId}
+     * @param walletId The ID of the wallet.
+     * @return ResponseEntity with the wallet details and transactions.
+     */
     @GetMapping("/{walletId}")
     public ResponseEntity<ApiResponse> getWalletById(@PathVariable UUID walletId) {
 
@@ -84,6 +123,12 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse(WALLET_RETRIEVED, response));
     }
 
+    /**
+     * Retrieves the balance of a wallet.
+     * Endpoint: GET /wallets/balance/{walletId}
+     * @param walletId The ID of the wallet.
+     * @return ResponseEntity with the current balance.
+     */
     @GetMapping("/balance/{walletId}")
     public ResponseEntity<ApiResponse> getWalletBalance(@PathVariable UUID walletId) {
 
@@ -92,8 +137,14 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse(WALLET_BALANCE_RETRIEVED, balance));
     }
 
+    /**
+     * Deletes a wallet.
+     * Endpoint: DELETE /wallets/{walletId}
+     * @param walletId The ID of the wallet to delete.
+     * @return ResponseEntity with a success message.
+     */
     @DeleteMapping("/{walletId}")
-    public ResponseEntity<ApiResponse> deleteWallet(@PathVariable(name = "walletId") UUID walletId) {
+    public ResponseEntity<ApiResponse> deleteWallet(@PathVariable UUID walletId) {
 
         walletService.deleteWallet(walletId);
 

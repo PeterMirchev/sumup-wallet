@@ -28,6 +28,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * Creates a new user.
+     * Endpoint: POST /users
+     * @param request The user creation details (firstName, lastName, password, email).
+     * @return ResponseEntity with the created user details.
+     */
     @PostMapping()
     public ResponseEntity<ApiResponse> createUser(@RequestBody @Valid CreateUserRequest request) {
 
@@ -37,6 +43,12 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse(USER_SUCCESSFULLY_CREATED, response));
     }
 
+    /**
+     * Updates an existing user's information.
+     * Endpoint: PUT /users
+     * @param request The user update details (userId, firstName, lastName).
+     * @return ResponseEntity with the updated user details.
+     */
     @PutMapping()
     public ResponseEntity<ApiResponse> updateUser(@RequestBody @Valid UpdateUserRequest request) {
 
@@ -46,6 +58,12 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse(USER_SUCCESSFULLY_UPDATED, response));
     }
 
+    /**
+     * Retrieves a user by their ID.
+     * Endpoint: GET /users/{userId}
+     * @param userId The ID of the user.
+     * @return ResponseEntity with the user details.
+     */
     @GetMapping("/{userId}")
     public ResponseEntity<ApiResponse> getUser(@PathVariable UUID userId) {
 
@@ -55,6 +73,12 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse("User: ", response));
     }
 
+    /**
+     * Retrieves a user by their email.
+     * Endpoint: GET /users/email
+     * @param request The request containing the email.
+     * @return ResponseEntity with the user details.
+     */
     @GetMapping("/email")
     public ResponseEntity<ApiResponse> getUserByEmail(@RequestBody GetUserByEmailRequest request) {
 
@@ -64,6 +88,12 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse("User: ", response));
     }
 
+    /**
+     * Deletes a user by their ID.
+     * Endpoint: DELETE /users/{userId}
+     * @param userId The ID of the user to delete.
+     * @return ResponseEntity with a success message.
+     */
     @DeleteMapping("/{userId}")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable UUID userId) {
 

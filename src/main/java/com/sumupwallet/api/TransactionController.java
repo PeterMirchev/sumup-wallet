@@ -23,6 +23,12 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
+    /**
+     * Retrieves all transactions for a specific wallet.
+     * Endpoint: GET /transactions/wallet/{walletId}
+     * @param walletId The ID of the wallet.
+     * @return ResponseEntity with a list of transactions.
+     */
     @GetMapping("/wallet/{walletId}")
     public ResponseEntity<ApiResponse> getTransactions(@PathVariable UUID walletId) {
 
@@ -31,6 +37,12 @@ public class TransactionController {
         return ResponseEntity.ok(new ApiResponse(TOTAL_TRANSACTIONS.formatted(transactions.size()), transactions));
     }
 
+    /**
+     * Retrieves all deposit transactions for a specific wallet.
+     * Endpoint: GET /transactions/deposit?walletId={walletId}
+     * @param walletId The ID of the wallet.
+     * @return ResponseEntity with a list of deposit transactions.
+     */
     @GetMapping("/deposit")
     public ResponseEntity<ApiResponse> getAllDepositTransactions(@RequestParam("walletId") UUID walletId) {
 
@@ -39,6 +51,12 @@ public class TransactionController {
         return ResponseEntity.ok(new ApiResponse(TOTAL_DEPOSITED_TRANSACTIONS.formatted(transactions.size()), transactions));
     }
 
+    /**
+     * Retrieves all withdrawal transactions for a specific wallet.
+     * Endpoint: GET /transactions/withdrawal?walletId={walletId}
+     * @param walletId The ID of the wallet.
+     * @return ResponseEntity with a list of withdrawal transactions.
+     */
     @GetMapping("/withdrawal")
     public ResponseEntity<ApiResponse> getAllWithdrawalTransactions(@RequestParam("walletId") UUID walletId) {
 
