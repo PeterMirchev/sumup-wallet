@@ -1,4 +1,4 @@
-package com.sumupwallet.controller.exception;
+package com.sumupwallet.api.exception;
 
 public class ErrorResponse {
 

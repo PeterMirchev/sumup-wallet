@@ -1,4 +1,4 @@
-package com.sumupwallet.controller;
+package com.sumupwallet.api;
 
 import com.sumupwallet.model.dto.WalletResponse;
 import com.sumupwallet.model.dto.WalletTransactionsResponse;
@@ -29,10 +29,10 @@ public class WalletController {
         this.walletService = walletService;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<ApiResponse> createWallet(@RequestBody @Valid CreateWalletRequest request, @RequestParam UUID userId) {
+    @PostMapping()
+    public ResponseEntity<ApiResponse> createWallet(@RequestBody @Valid CreateWalletRequest request) {
 
-        Wallet wallet = walletService.createWallet(request, userId);
+        Wallet wallet = walletService.createWallet(request);
 
         WalletResponse response = WalletMapper.mapToWalletResponse(wallet);
 
@@ -75,7 +75,7 @@ public class WalletController {
         return ResponseEntity.ok(new ApiResponse(WALLET_RETRIEVED, responses));
     }
 
-    @GetMapping("/wallet/{walletId}")
+    @GetMapping("/{walletId}")
     public ResponseEntity<ApiResponse> getWalletById(@PathVariable UUID walletId) {
 
         Wallet wallet = walletService.getWalletById(walletId);

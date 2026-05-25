@@ -6,10 +6,15 @@ import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 @Builder
 public class CreateWalletRequest {
 
+    @NotNull
+    @NotNull(message = "userId is required")
+    private UUID userId;
     @NotNull(message = "wallet name required")
     @Size(min = 2)
     private String walletName;

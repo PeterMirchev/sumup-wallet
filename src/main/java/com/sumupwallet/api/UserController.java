@@ -1,6 +1,7 @@
-package com.sumupwallet.controller;
+package com.sumupwallet.api;
 
 import com.sumupwallet.model.dto.UserResponse;
+import com.sumupwallet.request.GetUserByEmailRequest;
 import com.sumupwallet.utils.mapper.UserMapper;
 import com.sumupwallet.model.User;
 import com.sumupwallet.request.CreateUserRequest;
@@ -37,9 +38,9 @@ public class UserController {
     }
 
     @PutMapping()
-    public ResponseEntity<ApiResponse> updateUser(@RequestBody @Valid UpdateUserRequest request, @PathVariable UUID userId) {
+    public ResponseEntity<ApiResponse> updateUser(@RequestBody @Valid UpdateUserRequest request) {
 
-        User user = userService.updateUser(request, userId);
+        User user = userService.updateUser(request);
         UserResponse response = UserMapper.mapToUserResponseDto(user);
 
         return ResponseEntity.ok(new ApiResponse(USER_SUCCESSFULLY_UPDATED, response));
@@ -55,9 +56,9 @@ public class UserController {
     }
 
     @GetMapping("/email")
-    public ResponseEntity<ApiResponse> getUserByEmail(@RequestParam(name = "email") String email) {
+    public ResponseEntity<ApiResponse> getUserByEmail(@RequestBody GetUserByEmailRequest request) {
 
-        User user = userService.getUserByEmail(email);
+        User user = userService.getUserByEmail(request.getEmail());
         UserResponse response = UserMapper.mapToUserResponseDto(user);
 
         return ResponseEntity.ok(new ApiResponse("User: ", response));

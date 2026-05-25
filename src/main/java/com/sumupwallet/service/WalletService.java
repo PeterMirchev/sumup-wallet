@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface WalletService {
 
     Wallet getWalletById(UUID id);
-    Wallet createWallet(CreateWalletRequest request, UUID userId);
+    Wallet createWallet(CreateWalletRequest request);
     Wallet updateWallet(UUID id, String name);
     Wallet depositMoney(UUID id, BigDecimal amount);
     Wallet withdrawMoney(UUID id, BigDecimal amount);

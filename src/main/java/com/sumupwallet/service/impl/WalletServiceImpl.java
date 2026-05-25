@@ -47,10 +47,10 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public Wallet createWallet(CreateWalletRequest request, UUID userId) {
+    public Wallet createWallet(CreateWalletRequest request) {
 
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException(USER_WITH_ID_NOT_FOUND.formatted(userId.toString())));
+        User user = userRepository.findById(request.getUserId())
+                .orElseThrow(() -> new ResourceNotFoundException(USER_WITH_ID_NOT_FOUND.formatted(request.getUserId())));
 
         user.getWallets()
                 .forEach(wallet -> {

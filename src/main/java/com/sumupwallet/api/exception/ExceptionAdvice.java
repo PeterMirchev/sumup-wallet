@@ -1,4 +1,4 @@
-package com.sumupwallet.controller.exception;
+package com.sumupwallet.api.exception;
 
 import com.sumupwallet.exception.InvalidAmountException;
 import com.sumupwallet.exception.InvalidCurrencyException;

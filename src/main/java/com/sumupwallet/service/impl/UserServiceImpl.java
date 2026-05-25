@@ -41,16 +41,16 @@ public class UserServiceImpl implements UserService {
         User user = UserMapper.mapToUser(request);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        emailService.sendEmail(user.getEmail(), WELCOME_MESSAGE, SUCCESSFULLY_REGISTERED_EMAIL_BODY.formatted(request.getFirstName()));
+        //emailService.sendEmail(user.getEmail(), WELCOME_MESSAGE, SUCCESSFULLY_REGISTERED_EMAIL_BODY.formatted(request.getFirstName()));
 
         return userRepository.save(user);
     }
 
     @Override
-    public User updateUser(UpdateUserRequest request, UUID id) {
+    public User updateUser(UpdateUserRequest request) {
 
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(USER_WITH_ID_NOT_FOUND.formatted(id)));
+        User user = userRepository.findById(request.getUserId())
+                .orElseThrow(() -> new ResourceNotFoundException(USER_WITH_ID_NOT_FOUND.formatted(request.getUserId())));
 
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());

@@ -1,4 +1,4 @@
-package com.sumupwallet.controller;
+package com.sumupwallet.api;
 
 import com.sumupwallet.model.Transaction;
 import com.sumupwallet.response.ApiResponse;
@@ -23,8 +23,8 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @GetMapping("/{walletId}")
-    public ResponseEntity<ApiResponse> getTransactions(@PathVariable(name = "walletId") UUID walletId) {
+    @GetMapping("/wallet/{walletId}")
+    public ResponseEntity<ApiResponse> getTransactions(@PathVariable UUID walletId) {
 
         List<Transaction> transactions = transactionService.getAllTransactions(walletId);
 

@@ -1,4 +1,4 @@
-package com.sumupwallet.controller;
+package com.sumupwallet.api;
 
 import com.sumupwallet.request.LoginRequest;
 import com.sumupwallet.response.ApiResponse;
