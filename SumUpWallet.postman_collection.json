@@ -30,12 +30,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:9193/api/v1/users/create",
+							"raw": "http://localhost:8080/api/v1/users/create",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -71,12 +71,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:9193/api/v1/users/update/5d7febdb-1b8b-4b89-93d6-2579e617a9c1",
+							"raw": "http://localhost:8080/api/v1/users/update/5d7febdb-1b8b-4b89-93d6-2579e617a9c1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -104,12 +104,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/users/by-id/guitaronline89@gmail.com",
+							"raw": "http://localhost:8080/api/v1/users/by-id/guitaronline89@gmail.com",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -137,12 +137,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/users/by-email?email=Test@gmail.com?email",
+							"raw": "http://localhost:8080/api/v1/users/by-email?email=Test@gmail.com?email",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -165,12 +165,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/users/2c760f76-44cd-44dc-9e4d-70917d8929c5",
+							"raw": "http://localhost:8080/api/v1/users/2c760f76-44cd-44dc-9e4d-70917d8929c5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -211,12 +211,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:9193/api/v1/wallets/create?userId=4d2f7aa4-411f-48e4-b427-36b69de7d764",
+							"raw": "http://localhost:8080/api/v1/wallets/create?userId=4d2f7aa4-411f-48e4-b427-36b69de7d764",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -249,12 +249,12 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/wallets/update?walletId=25b7e9be-6ce1-4469-a613-43e2b43ecd67&walletName=New name changed now",
+							"raw": "http://localhost:8080/api/v1/wallets/update?walletId=25b7e9be-6ce1-4469-a613-43e2b43ecd67&walletName=New name changed now",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -291,12 +291,12 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/wallets/deposit?walletId=c5e6c9c1-3a1b-46e5-8fae-a35bedc94dfa&amount=10000",
+							"raw": "http://localhost:8080/api/v1/wallets/deposit?walletId=c5e6c9c1-3a1b-46e5-8fae-a35bedc94dfa&amount=10000",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -333,12 +333,12 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/wallets/withdraw?id=5e7e11b0-fbeb-4ef8-9dc2-27bb7f5c4ebd&amount=1",
+							"raw": "http://localhost:8080/api/v1/wallets/withdraw?id=5e7e11b0-fbeb-4ef8-9dc2-27bb7f5c4ebd&amount=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -375,12 +375,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/wallets/all-wallets/5f844a8e-359d-4f78-ac9b-7d7831bc3a09",
+							"raw": "http://localhost:8080/api/v1/wallets/all-wallets/5f844a8e-359d-4f78-ac9b-7d7831bc3a09",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -408,12 +408,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/wallets/wallet/5e7e11b0-fbeb-4ef8-9dc2-27bb7f5c4ebd",
+							"raw": "http://localhost:8080/api/v1/wallets/wallet/5e7e11b0-fbeb-4ef8-9dc2-27bb7f5c4ebd",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -441,12 +441,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/wallets/balance?walletId=72095683-2263-4a69-8f30-cc99642139e8",
+							"raw": "http://localhost:8080/api/v1/wallets/balance?walletId=72095683-2263-4a69-8f30-cc99642139e8",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -479,12 +479,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/wallets/c5e6c9c1-3a1b-46e5-8fae-a35bedc94dfa",
+							"raw": "http://localhost:8080/api/v1/wallets/c5e6c9c1-3a1b-46e5-8fae-a35bedc94dfa",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -506,12 +506,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/transactions/all/4bfd1a0c-b9c3-464c-89cb-1617cee690c2",
+							"raw": "http://localhost:8080/api/v1/transactions/all/4bfd1a0c-b9c3-464c-89cb-1617cee690c2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -539,12 +539,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/transactions/all/deposit?walletId=16dea3d4-405c-46ec-a000-1fe17bd3b2a7",
+							"raw": "http://localhost:8080/api/v1/transactions/all/deposit?walletId=16dea3d4-405c-46ec-a000-1fe17bd3b2a7",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -578,12 +578,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9193/api/v1/transactions/all/withdrawal?walletId=2424d564-fbdf-40f0-adfd-ab4973846c33",
+							"raw": "http://localhost:8080/api/v1/transactions/all/withdrawal?walletId=2424d564-fbdf-40f0-adfd-ab4973846c33",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9193",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -618,7 +618,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9193/api/v1/auth/login",
+					"raw": "http://localhost:8080/api/v1/auth/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
