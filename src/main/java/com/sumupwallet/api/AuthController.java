@@ -33,7 +33,7 @@ public class AuthController {
 
     /**
      * Authenticates a user.
-     * Endpoint: POST /auth/login
+     * Endpoint: POST http://localhost:8080/api/v1/auth/login
      * @param request The login credentials (email and password).
      * @return ResponseEntity with a success message and JWT details.
      */

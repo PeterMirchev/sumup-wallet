@@ -31,7 +31,7 @@ public class WalletController {
 
     /**
      * Creates a new wallet for a user.
-     * Endpoint: POST /wallets
+     * Endpoint: POST http://localhost:8080/api/v1/wallets
      * @param request The wallet creation details (userId, walletName, currency).
      * @return ResponseEntity with the created wallet details.
      */
@@ -47,7 +47,7 @@ public class WalletController {
 
     /**
      * Updates an existing wallet's name.
-     * Endpoint: PUT /wallets?walletId={walletId}&walletName={walletName}
+     * Endpoint: PUT http://localhost:8080/api/v1/wallets?walletId={walletId}&walletName={walletName}
      * @param walletId The ID of the wallet to update.
      * @param walletName The new name for the wallet.
      * @return ResponseEntity with the updated wallet details.
@@ -63,7 +63,7 @@ public class WalletController {
 
     /**
      * Deposits money into a wallet.
-     * Endpoint: PUT /wallets/deposit?walletId={walletId}&amount={amount}
+     * Endpoint: PUT http://localhost:8080/api/v1/wallets/deposit?walletId={walletId}&amount={amount}
      * @param walletId The ID of the wallet.
      * @param amount The amount to deposit.
      * @return ResponseEntity with the updated wallet details.
@@ -79,7 +79,7 @@ public class WalletController {
 
     /**
      * Withdraws money from a wallet.
-     * Endpoint: PUT /wallets/withdraw?walletId={walletId}&amount={amount}
+     * Endpoint: PUT http://localhost:8080/api/v1/wallets/withdraw?walletId={walletId}&amount={amount}
      * @param walletId The ID of the wallet.
      * @param amount The amount to withdraw.
      * @return ResponseEntity with the updated wallet details.
@@ -95,7 +95,7 @@ public class WalletController {
 
     /**
      * Retrieves all wallets belonging to a user.
-     * Endpoint: GET /wallets/user/{userId}
+     * Endpoint: GET http://localhost:8080/api/v1/wallets/user/{userId}
      * @param userId The ID of the user.
      * @return ResponseEntity with a list of user's wallets.
      */
@@ -110,7 +110,7 @@ public class WalletController {
 
     /**
      * Retrieves a wallet by its ID.
-     * Endpoint: GET /wallets/{walletId}
+     * Endpoint: GET http://localhost:8080/api/v1/wallets/{walletId}
      * @param walletId The ID of the wallet.
      * @return ResponseEntity with the wallet details and transactions.
      */
@@ -125,7 +125,7 @@ public class WalletController {
 
     /**
      * Retrieves the balance of a wallet.
-     * Endpoint: GET /wallets/balance/{walletId}
+     * Endpoint: GET http://localhost:8080/api/v1/wallets/balance/{walletId}
      * @param walletId The ID of the wallet.
      * @return ResponseEntity with the current balance.
      */
@@ -139,7 +139,7 @@ public class WalletController {
 
     /**
      * Deletes a wallet.
-     * Endpoint: DELETE /wallets/{walletId}
+     * Endpoint: DELETE http://localhost:8080/api/v1/wallets/{walletId}
      * @param walletId The ID of the wallet to delete.
      * @return ResponseEntity with a success message.
      */

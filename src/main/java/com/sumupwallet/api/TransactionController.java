@@ -25,7 +25,7 @@ public class TransactionController {
 
     /**
      * Retrieves all transactions for a specific wallet.
-     * Endpoint: GET /transactions/wallet/{walletId}
+     * Endpoint: GET http://localhost:8080/api/v1/transactions/wallet/{walletId}
      * @param walletId The ID of the wallet.
      * @return ResponseEntity with a list of transactions.
      */
@@ -39,7 +39,7 @@ public class TransactionController {
 
     /**
      * Retrieves all deposit transactions for a specific wallet.
-     * Endpoint: GET /transactions/deposit?walletId={walletId}
+     * Endpoint: GET http://localhost:8080/api/v1/transactions/deposit?walletId={walletId}
      * @param walletId The ID of the wallet.
      * @return ResponseEntity with a list of deposit transactions.
      */
@@ -53,7 +53,7 @@ public class TransactionController {
 
     /**
      * Retrieves all withdrawal transactions for a specific wallet.
-     * Endpoint: GET /transactions/withdrawal?walletId={walletId}
+     * Endpoint: GET http://localhost:8080/api/v1/transactions/withdrawal?walletId={walletId}
      * @param walletId The ID of the wallet.
      * @return ResponseEntity with a list of withdrawal transactions.
      */

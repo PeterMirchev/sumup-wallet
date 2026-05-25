@@ -30,7 +30,7 @@ public class UserController {
 
     /**
      * Creates a new user.
-     * Endpoint: POST /users
+     * Endpoint: POST http://localhost:8080/api/v1/users
      * @param request The user creation details (firstName, lastName, password, email).
      * @return ResponseEntity with the created user details.
      */
@@ -45,7 +45,7 @@ public class UserController {
 
     /**
      * Updates an existing user's information.
-     * Endpoint: PUT /users
+     * Endpoint: PUT http://localhost:8080/api/v1/users
      * @param request The user update details (userId, firstName, lastName).
      * @return ResponseEntity with the updated user details.
      */
@@ -60,7 +60,7 @@ public class UserController {
 
     /**
      * Retrieves a user by their ID.
-     * Endpoint: GET /users/{userId}
+     * Endpoint: GET http://localhost:8080/api/v1/users/{userId}
      * @param userId The ID of the user.
      * @return ResponseEntity with the user details.
      */
@@ -75,7 +75,7 @@ public class UserController {
 
     /**
      * Retrieves a user by their email.
-     * Endpoint: GET /users/email
+     * Endpoint: GET http://localhost:8080/api/v1/users/email
      * @param request The request containing the email.
      * @return ResponseEntity with the user details.
      */
@@ -90,7 +90,7 @@ public class UserController {
 
     /**
      * Deletes a user by their ID.
-     * Endpoint: DELETE /users/{userId}
+     * Endpoint: DELETE http://localhost:8080/api/v1/users/{userId}
      * @param userId The ID of the user to delete.
      * @return ResponseEntity with a success message.
      */
